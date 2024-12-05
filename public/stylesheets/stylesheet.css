@@ -1,0 +1,66 @@
+:root{
+    --main-color: #fafafa;
+    --text-color: #0a0a0a;
+    --accent-color: #333333;
+}
+
+/*Default settings*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+/*Header und Footer*/
+header, footer {
+    color: var(--main-color);
+    background: var(--accent-color);
+    padding: 1em;
+    width: 100%;
+    position: sticky
+}
+footer {
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+/*Navigation Bar*/
+nav {background: #333333;
+    width: 100%;
+}
+nav::after{
+    clear: both;
+    content: "";
+    display: block;
+}
+nav li {
+    list-style-type: none;
+    text-align: center;
+}
+nav li:nth-child(2n) {
+    background: #f0f0f0;
+}
+nav li:nth-child(2n+1) {
+    background: #fafafa;
+}
+nav li:hover {
+    background: #FDF3E3;
+}
+nav li a {
+    text-decoration: none;
+    display: block;
+    padding:1.2rem;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+/*Main Body*/
+main {height: 100%}
+
+h2 {
+    padding: 0.5em;
+    text-align: center;
+}
