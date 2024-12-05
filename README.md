@@ -1,2 +1,3 @@
 npm install:
-    charts.js
+    express
+    charts.js (Nur über den CDN)

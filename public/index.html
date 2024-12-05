@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
-  <script src="js/aktien.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/aktien.js" type="module"></script>
+  <script src="js/wiki.js" type="module"></script>
 </head>
 
 <body>
@@ -27,9 +29,15 @@
   <main>
     <div id="aktien">
       <h2>Aktienkurs</h2>
+      <div id="Aktienchart">
+        <canvas id="Aktienkurs"></canvas>
+      </div>
     </div>
     <div id="wiki">
       <h2>Wikipedia</h2>
+      <input type="text" id="wikisearch">
+      <button id="searchbutton">Search</button>
+      <div id="wikiout"></div>
     </div>
     <div id="wetter">
       <h2>Wetter</h2>
