@@ -1,4 +1,4 @@
-document.getElementById("searchbutton").onclick = function() {wikiquery()};
+document.getElementById("searchbutton").onclick = function() {wikiquery()}
 
 
 function wikiquery() {
@@ -17,7 +17,7 @@ function wikiquery() {
 
         var output = "<table id=wikiouttable><tr>"
         for(var page in pages) {
-            output += "<td>" + pages[page].title + "</td>"
+            output += "<td id='titleid'> <a class='wikiref' href='https://de.wikipedia.org/?curid=" + pages[page].pageid + "'>"+ pages[page].title + "</a> </td>"
             output += "<td>" + pages[page].description + "</td>"
             output += "<td>" + pages[page].extract + "</td>"
             output += "</tr>"

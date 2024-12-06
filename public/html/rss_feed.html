@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News</title>
+  <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css">
+  <script src="../js/rssFeed.js" type="module"></script>
+</head>
+
+<body>
+    <header id="headerid">
+        <h1>Web Engineering</h1> <h1>Prüfungsprojekt</h1>
+    </header>
+
+    <main id="mainid">
+        <div>
+            <h2 class="sectionBanner" id="tsBanner">Tagesschau</h2>
+            <div id="feedid"></div>
+        </div>
+    </main>
+
+    <script>
+        var headerheight = document.getElementById("headerid").offsetHeight
+        console.log(headerheight)
+        document.getElementById("mainid").style.paddingTop = headerheight + "px"
+    </script>
+
+    <footer id="footerid">
+        &copy; 1679806
+        <script>
+          var footerHeight = document.getElementById("footerid").offsetHeight
+          document.getElementById("mainid").style.paddingBottom = footerHeight + "px"
+        </script>
+      </footer>
+</body>

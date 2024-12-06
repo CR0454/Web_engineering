@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wettervorhersage</title>
+  <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/weather.js" type="module"></script>
+</head>
+
+<body>
+    <header id="headerid">
+        <h1>Web Engineering</h1> <h1>Prüfungsprojekt</h1>
+    </header>
+
+    <main id="weathermain">
+        <div id="searchbar">
+            <input id="locSearch">
+            <button id="locButton">Search</button>
+        </div>
+        <div id="locationid"></div>
+        <canvas id="tempchart"></canvas>
+        <canvas id="rainchart"></canvas>
+
+        <script>
+            var headerheight = document.getElementById("headerid").offsetHeight
+            console.log(headerheight)
+            document.getElementById("weathermain").style.paddingTop = headerheight + "px"
+          </script>
+    </main>
+
+    <footer id="footerid">
+        &copy; 1679806
+        <script>
+          var footerHeight = document.getElementById("footerid").offsetHeight
+          document.getElementById("weathermain").style.paddingBottom = footerHeight + "px"
+        </script>
+      </footer>
+
+</body>

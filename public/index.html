@@ -2,19 +2,22 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prüfungsprojekt</title>
   <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/aktien.js" type="module"></script>
   <script src="js/wiki.js" type="module"></script>
+  <script src="js/weatherPopup.js" type="module"></script>
 </head>
 
 <body>
 
-  <header>
-    <h1>Web Engineering Prüfungsprojekt</h1>
+  <header id="headerid">
+    <h1>Web Engineering</h1> <h1>Prüfungsprojekt</h1>
   </header>
 
-  <nav>
+  <nav id="navid">
     <li>
       <a href="#aktien">Aktienkurs</a>
     </li>
@@ -22,11 +25,20 @@
       <a href="#wiki">Wikipedia</a>
     </li>
     <li>
-      <a href="#wetter">Wetter</a>
+      <a href="" id="wetterbutton">Wetter</a>
     </li>
+    <li>
+      <a href="/html/rss_feed.html">Newsfeed</a>
+    </li>
+
+    <script>
+      var headerheight = document.getElementById("headerid").offsetHeight
+      console.log(headerheight)
+      document.getElementById("navid").style.paddingTop = headerheight + "px"
+    </script>
   </nav>
 
-  <main>
+  <main id="mainid">
     <div id="aktien">
       <h2>Aktienkurs</h2>
       <div id="Aktienchart">
@@ -35,17 +47,20 @@
     </div>
     <div id="wiki">
       <h2>Wikipedia</h2>
-      <input type="text" id="wikisearch">
-      <button id="searchbutton">Search</button>
+      <div>
+        <input type="text" id="wikisearch">
+        <button id="searchbutton">Search</button>
+      </div>
       <div id="wikiout"></div>
-    </div>
-    <div id="wetter">
-      <h2>Wetter</h2>
     </div>
   </main>
 
-  <footer>
+  <footer id="footerid">
     &copy; 1679806
+    <script>
+      var footerHeight = document.getElementById("footerid").offsetHeight
+      document.getElementById("mainid").style.paddingBottom = footerHeight + "px"
+    </script>
   </footer>
 
 </body>
