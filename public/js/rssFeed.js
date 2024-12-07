@@ -3,32 +3,98 @@ header.onclick = function() {
     window.location.href = "http://localhost:6001"
 }
 
-var xhttp = new XMLHttpRequest()
-xhttp.onload = function() {
+const tsfeed = document.getElementById("tsfeedid")
+const tsBanner = document.getElementById("tsBanner")
+tsBanner.onclick = function() {
+    if(tsfeed.checkVisibility()) {
+        tsfeed.style.display = "none"
+    } else {
+        tsfeed.style.display = "grid"
+    }
+}
+
+const nytfeed = document.getElementById("nytfeedid")
+const nytBanner = document.getElementById("nytBanner")
+nytBanner.onclick = function() {
+    if(nytfeed.checkVisibility()) {
+        nytfeed.style.display = "none"
+    } else {
+        nytfeed.style.display = "grid"
+    }
+}
+
+function tscomposeArticle(item, itemNr) {
+    var code = "<div class='feedElement' id='element" + itemNr + "'>"
+    code += "<p class='publishDate'>" + item.getElementsByTagName("pubDate")[0].textContent + "</p>"
+    code += "<h3>" + item.getElementsByTagName("title")[0].textContent + "</h3>"
+    var img = item.getElementsByTagName("content:encoded")[0].textContent.match(/<img[^>]*src="([^"]+)"/)
+    code += "<img src='" + img[1] + "' class='feedImage'>"
+    code += "<p class='paragraph'>" + item.getElementsByTagName("description")[0].textContent + "</p>"
+    code += "<a class='readmore' href='" + item.getElementsByTagName("link")[0].textContent + "'>Read more</a>"
+    code += "</div>"
+
+    return code
+}
+
+function nytcomposeArticle(item, itemNr) {
+    var code = "<div class='feedElement' id='element" + itemNr + "'>"
+    code += "<p class='publishDate'>" + item.getElementsByTagName("pubDate")[0].textContent + "</p>"
+    code += "<h3>" + item.getElementsByTagName("title")[0].textContent + "</h3>"
+    /*
+    var parser = new DOMParser()
+    var img = parser.parseFromString(item.getElementsByTagName("media:content"), "application/xml").querySelector("media\\:content")?.getAttribute("url")
+    console.log(img)
+    code += "<img src='" + img + "' class='feedImage'>"
+    */
+    code += "<p class='paragraph'>" + item.getElementsByTagName("description")[0].textContent + "</p>"
+    code += "<a class='readmore' href='" + item.getElementsByTagName("link")[0].textContent + "'>Read more</a>"
+    code += "</div>"
+
+    return code
+}
+
+var tsxhttp = new XMLHttpRequest()
+tsxhttp.onload = function() {
     var xmlDoc = this.responseXML
     var feedCode = ""
     
-    for(var x in xmlDoc.getElementsByTagName("item")) {
+    for(var x = 0; x < 10; x++) {
        try {
         var item = xmlDoc.getElementsByTagName("item")[x]
-        feedCode += "<div class='feedElement' id='element" + x + "'>"
-        feedCode += "<p class='publishDate'>" + item.getElementsByTagName("pubDate")[0].textContent + "</p>"
-        feedCode += "<h3>" + item.getElementsByTagName("title")[0].textContent + "</h3>"
-        var img = item.getElementsByTagName("content:encoded")[0].textContent.match(/<img[^>]*src="([^"]+)"/)
-        feedCode += "<img src='" + img[1] + "' class='feedImage'>"
-        feedCode += "<p class='paragraph'>" + item.getElementsByTagName("description")[0].textContent + "</p>"
-        feedCode += "<a class='readmore' href='" + item.getElementsByTagName("link")[0].textContent + "'>Read more</a>"
-        feedCode += "</div>"
+        feedCode += tscomposeArticle(item, x)
        }
-       catch {}
+       catch (e){
+        console.log(e)
+       }
     }
 
-    document.getElementById("feedid").innerHTML = feedCode
+    tsfeed.innerHTML = feedCode
 }
+var tsurl = "https://www.tagesschau.de/index~rss2.xml"
 
-var url = "https://www.tagesschau.de/index~rss2.xml"
+tsxhttp.open("GET", tsurl, true)
+tsxhttp.send()
 
-xhttp.open("GET", url, true)
-xhttp.send()
 
-//show more 
+
+var nytxhttp = new XMLHttpRequest()
+nytxhttp.onload = function() {
+    var xmlDoc = this.responseXML
+    var feedCode = ""
+    
+    for(var x = 0; x < 10; x++) {
+       try {
+        var item = xmlDoc.getElementsByTagName("item")[x]
+        feedCode += nytcomposeArticle(item, x)
+       }
+       catch (e){
+        console.log(e)
+       }
+    }
+
+    nytfeed.innerHTML = feedCode
+}
+var nyturl = "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+
+nytxhttp.open("GET", nyturl, true)
+nytxhttp.send()

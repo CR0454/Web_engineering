@@ -28,6 +28,9 @@ p, h2, h3 {
     h3 {
         font-size: 24px;
     }
+    h4 {
+        font-size: 22px;
+    }
     p {
         font-size: 20px;
     }
@@ -160,12 +163,27 @@ h2 {
     padding: 10px;
 }
 
-#tempchart {
-    width: 80%;
+#reportID {
+    padding: 10px;
+    align-items: center;
 }
 
+
+#forecastDiv {
+    display: grid;
+    grid-auto-flow: column;
+    overflow-x: auto;
+    grid-auto-columns: min-content;
+    scrollbar-width: thin;
+}
+
+#genweatherDiv {
+    padding: 30px;
+}
+
+
 /*RSS Feed*/
-#feedid {
+.feedClass {
     display: grid;
     place-items: center;
 }
@@ -193,4 +211,8 @@ h2 {
 .readmore {
     font-size: 13px;
     color: var(--text-color)
+}
+
+.sectionBanner {
+    cursor: pointer;
 }
