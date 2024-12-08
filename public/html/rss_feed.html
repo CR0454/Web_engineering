@@ -11,6 +11,12 @@
 <body>
     <header id="headerid" style="cursor:pointer">
         <h1>Web Engineering</h1> <h1>Prüfungsprojekt</h1>
+        <script>
+          const header = document.getElementById("headerid")
+          header.onclick = function() {
+            window.location.href = "http://localhost:6001"
+          }
+        </script>
     </header>
 
     <main id="mainid">

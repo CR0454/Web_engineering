@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DB Timetable</title>
+  <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css">
+  <script src="../js/db.js" type="module"></script>
+</head>
+
+<body>
+    <header id="headerid" style="cursor:pointer">
+        <h1>Web Engineering</h1> <h1>Prüfungsprojekt</h1>
+    </header>
+    <script>
+        const header = document.getElementById("headerid")
+            header.onclick = function() {
+        window.location.href = "http://localhost:6001"
+        }
+    </script>
+
+    <main id="mainid">
+        <div id="trainsid"></div>
+    </main>
+
+    <script>
+        var headerheight = document.getElementById("headerid").offsetHeight
+        console.log(headerheight)
+        document.getElementById("mainid").style.paddingTop = headerheight + "px"
+    </script>
+
+    <footer id="footerid">
+        &copy; 1679806
+        <script>
+            var footerHeight = document.getElementById("footerid").offsetHeight
+            document.getElementById("mainid").style.paddingBottom = footerHeight + "px"
+        </script>
+    </footer>
+</body>

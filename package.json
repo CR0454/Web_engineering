@@ -10,7 +10,10 @@
     "chart.js": "^4.4.7",
     "express": "^4.21.1",
     "express-basic-auth": "^1.2.1",
-    "node-fetch": "^2.6.9"
+    "node-fetch": "^2.6.9",
+    "request": "^2.88.2",
+    "xml2js": "^0.6.2",
+    "xmldom": "^0.6.0"
   },
   "engines": {
     "node": "^16.13.1",

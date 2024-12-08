@@ -1,8 +1,3 @@
-const header = document.getElementById("headerid")
-header.onclick = function() {
-    window.location.href = "http://localhost:6001"
-}
-
 const tsfeed = document.getElementById("tsfeedid")
 const tsBanner = document.getElementById("tsBanner")
 tsBanner.onclick = function() {

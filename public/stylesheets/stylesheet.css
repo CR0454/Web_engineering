@@ -76,7 +76,7 @@ nav {
     background: #333333;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 }
 nav::after{
     clear: both;
@@ -113,6 +113,8 @@ nav li a {
 /*Main Body*/
 main {
     height: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 #wiki {
@@ -138,7 +140,7 @@ h2 {
     color: var(--text-color);
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1000px) {
     #wikiout tr {
         display: block;
 
@@ -215,4 +217,30 @@ h2 {
 
 .sectionBanner {
     cursor: pointer;
+}
+
+/*DB*/
+
+.trainIsland {
+    padding: 10px;
+}
+
+.followStopsClass {
+    display: grid;
+    grid-auto-flow: column;
+    overflow-x: auto;
+    grid-auto-columns: max-content;
+    gap: 20px;
+    scrollbar-width: thin;
+}
+
+.FollowStopsButton {
+    font-weight: bold;
+}
+
+@media (max-width: 560px) {
+    .followStopsClass {
+        grid-auto-flow: row;
+        gap: 0px;
+    }
 }
