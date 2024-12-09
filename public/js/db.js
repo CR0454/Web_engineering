@@ -140,7 +140,7 @@ async function getTimetable(evaNo, datestr) {
                 traindiv.innerHTML += createIsland(data.s[sorted[i][1]], stationName)
             }
 
-            return [data, sorted]
+
         })
 }
 
