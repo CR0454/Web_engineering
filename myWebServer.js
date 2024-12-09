@@ -186,3 +186,35 @@ app.get("/db-timetable", (req, res) => {
       res.json(jsonres)
     })
 })
+
+app.get("/db-changes", (req, res) => {
+  console.log(req.query)
+
+  const xml2js = require("xml2js")
+  const { DOMParser } = require("xmldom")
+  const domparser = new DOMParser()
+
+  var url = "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/fchg/" + req.query.evaNo
+  var header = {
+    "DB-Client-Id": "6b0179d0470222752b7c6e8be113403b",
+    "DB-Api-Key": "24f026e231c0136bd94e44dc0d8c5769", 
+    "accept": "application/xml"
+  }
+
+  fetch(url, {
+    method: "GET",
+    headers: header
+  })
+    .then(response => response.text())
+    .then(data => {
+      var fetchxml = domparser.parseFromString(data, "application/xml")
+
+      var jsonres
+      const parser = new xml2js.Parser()
+      parser.parseString(fetchxml, function(err, result) {
+        jsonres = result
+      })
+
+      res.json(jsonres)
+    })
+})

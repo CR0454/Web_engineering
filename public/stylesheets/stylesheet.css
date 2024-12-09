@@ -37,6 +37,9 @@ p, h2, h3 {
     table {
         font-size: 20px;
     }
+    input, select {
+        font-size: 20px;
+    }
 }
 
 /*Header und Footer*/
@@ -238,9 +241,22 @@ h2 {
     font-weight: bold;
 }
 
+#stationSearch {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 5px;
+    padding: 10px
+}
+
+
 @media (max-width: 560px) {
     .followStopsClass {
         grid-auto-flow: row;
         gap: 0px;
+    }
+}
+@media (max-width: 680px) {
+    #stationSearch {
+        grid-auto-flow: row;
     }
 }
