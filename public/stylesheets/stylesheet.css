@@ -265,6 +265,10 @@ select {
     width: 100%;
 }
 
+.trainName {
+    cursor: pointer;
+}
+
 @media (max-width: 560px) {
     .followStopsClass {
         grid-auto-flow: row;

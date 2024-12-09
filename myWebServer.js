@@ -164,8 +164,8 @@ app.get("/db-timetable", (req, res) => {
 
   var url = "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/plan/" + req.query.evaNo + "/" + req.query.date + "/" + req.query.hour
   var header = {
-    "DB-Client-Id": "6b0179d0470222752b7c6e8be113403b",
-    "DB-Api-Key": "24f026e231c0136bd94e44dc0d8c5769", 
+    "DB-Client-Id": process.env.DB_Client_ID,
+    "DB-Api-Key": process.env.DB_API_Key, 
     "accept": "application/xml"
   }
 
@@ -196,8 +196,8 @@ app.get("/db-changes", (req, res) => {
 
   var url = "https://apis.deutschebahn.com/db-api-marketplace/apis/timetables/v1/fchg/" + req.query.evaNo
   var header = {
-    "DB-Client-Id": "6b0179d0470222752b7c6e8be113403b",
-    "DB-Api-Key": "24f026e231c0136bd94e44dc0d8c5769", 
+    "DB-Client-Id": process.env.DB_Client_ID,
+    "DB-Api-Key": process.env.DB_API_Key, 
     "accept": "application/xml"
   }
 

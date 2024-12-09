@@ -87,36 +87,38 @@ function createIsland(object, sName) {
     if(cancelled != 1){
         switch(ArDepInd) {
             case 0: {
-                code += "<h4 class='trainName'>" + tripLabel.c + " " + tripLabel.n + " to " + follStops[follStops.length-1] + "</h4>"
-                code += corrPlattform(plattform, changes)
+                code += "<h4 class='trainName' onClick='hideInfo(this)'>" + tripLabel.c + " " + tripLabel.n + " to " + follStops[follStops.length-1] + "</h4>"
+                code += "<div class='hidden'><div class='singleInfo'><p>From " + prevStops[0] + "</p></div>"
+                code += corrPlattform(plattform, changes) + "</div>"
                 code += corrArrival([arrival.pt, prevStops], changes)
-                code += corrDeparture([departure.pt, follStops], changes)
+                code += "<div class='hidden'>" + corrDeparture([departure.pt, follStops], changes)
                 code += "<div class='singleInfo'><p class='FollowStopsButton'>Following stops</p>"
                 code += "<div class='followStopsClass'>"
                 for(var i in follStops) {
                     code += "<p>" + follStops[i] + "</p>"
                 }
-                code += "</div></div>"
+                code += "</div></div></div>"
                 break
             }
             case 1: {
-                code += "<h4 class='trainName'>" + tripLabel.c + " " + tripLabel.n + " to " + sName + "</h4>"
-                code += corrPlattform(plattform, changes)
+                code += "<h4 class='trainName' onClick='hideInfo(this)'>" + tripLabel.c + " " + tripLabel.n + " to " + sName + "</h4>"
+                code += "<div class='hidden'><div class='singleInfo'><p>From " + prevStops[0] + "</p></div>"
+                code += corrPlattform(plattform, changes) + "</div>"
                 code += corrArrival([arrival.pt, prevStops], changes)
-                code += "<div class='singleInfo'><p>Train ending at " + sName + "</p></div>"
+                code += "<div class='hidden'><div class='singleInfo'><p>Train ending at " + sName + "</p></div></div>"
                 break
             }
             case 2: {
-                code += "<h4 class='trainName'>" + tripLabel.c + " " + tripLabel.n + " to " + follStops[follStops.length-1] + "</h4>"
-                code += corrPlattform(plattform, changes)
-                code += "<div class='singleInfo'><p>Train starting at " + sName + "</p></div>"
+                code += "<h4 class='trainName' onClick='hideInfo(this)'>" + tripLabel.c + " " + tripLabel.n + " to " + follStops[follStops.length-1] + "</h4>"
+                code += "<div class='hidden'>" + corrPlattform(plattform, changes)
+                code += "<div class='singleInfo'><p>Train starting at " + sName + "</p></div></div>"
                 code += corrDeparture([departure.pt, follStops], changes)
-                code += "<div class='singleInfo'><p class='FollowStopsButton'>Following stops</p>"
+                code += "<div class='hidden'><div class='singleInfo'><p class='FollowStopsButton'>Following stops</p>"
                 code += "<div class='followStopsClass'>"
                 for(var i in follStops) {
                     code += "<p>" + follStops[i] + "</p>"
                 }
-                code += "</div></div>"
+                code += "</div></div></div>"
                 break
             }
             default: break
@@ -124,7 +126,12 @@ function createIsland(object, sName) {
     }
     else {
         code += "<h4 class='trainName' style='text-decoration:line-through;color:red;'>" + tripLabel.c + " " + tripLabel.n + " to " + follStops[follStops.length-1] + "</h4>"
-        code += "<div class='singleInfo'><p style='color:grey;'>original arrival: " + dbToDate(arrival.pt) + "</p></div>"
+        try {
+            code += "<div class='singleInfo'><p style='color:grey;'>original arrival: " + dbToDate(arrival.pt) + "</p></div>"
+        }
+        catch (e){
+            code += "<div class='singleInfo'><p style='color:grey;'>original departure: " + dbToDate(departure.pt) + "</p></div>"
+        }
         code += "<div class='singleInfo'><p>Train cancelled</p></div>"
     }
 
@@ -276,7 +283,7 @@ function corrPlattform(planned, changed) {
         
     }
     if(newPlattform) {
-        code += "<div><p>Platform </p><p style='text-decoration:line-through;color:red;'>" + planned + "</p><p> " + newPlattform + "</p></div>"
+        code += "<div style='display:grid;grid-auto-flow:column;grid-auto-columns:max-content;'><p>Platform&nbsp</p><p style='text-decoration:line-through;color:red;'>" + planned + "</p><p>&nbsp" + newPlattform + "</p></div>"
     }
     else {
         code += "<p>Platform " + planned + "</p>"
@@ -294,7 +301,7 @@ function corrArrival(planned, changed) {
         }
     catch {}
         
-    if(newArrival != planned[0]) {
+    if(newArrival != planned[0] && newArrival !== undefined) {
         code += "<div class='correctionOut'><div style='display:grid;grid-auto-flow:column;grid-auto-columns:max-content;'><p>Arrival:&nbsp</p><p style='text-decoration:line-through;color:red;'>" + dbToDate(planned[0]) + "&nbsp</p><p>" + dbToDate(newArrival) + "&nbsp</p></div><p> from " + planned[1][planned[1].length-1] + "</p></div>"
     }
     else {
@@ -311,8 +318,7 @@ function corrDeparture(planned, changed) {
         newDeparture = changed.dp[0].$.ct
         }
     catch {}
-        
-    if(newDeparture != planned[0]) {
+    if(newDeparture != planned[0] && newDeparture !== undefined) {
         code += "<div class='correctionOut'><div style='display:grid;grid-auto-flow:column;grid-auto-columns:max-content;'><p>Departure:&nbsp</p><p style='text-decoration:line-through;color:red;'>" + dbToDate(planned[0]) + "&nbsp</p><p>" + dbToDate(newDeparture) + "&nbsp</p></div><p>to " + planned[1][0] + "</p></div>"
     }
     else {
@@ -320,4 +326,9 @@ function corrDeparture(planned, changed) {
     }
     code += "</div>"
     return code
+}
+
+/*Show information*/
+function hideInfo() {
+    console.log("click")
 }
