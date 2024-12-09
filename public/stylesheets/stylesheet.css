@@ -245,14 +245,34 @@ h2 {
     display: grid;
     grid-auto-flow: column;
     gap: 5px;
-    padding: 10px
+    padding: 10px;
+    max-width: 600px;
 }
 
+.correctionOut {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    width: 100%;
+    overflow-x:auto;
+}
+.singleInfo {
+    padding: 3px;
+    padding-left: 5px;
+}
+
+select {
+    width: 100%;
+}
 
 @media (max-width: 560px) {
     .followStopsClass {
         grid-auto-flow: row;
         gap: 0px;
+    }
+    .correctionOut {
+        grid-auto-flow: row;
+        grid-auto-rows: max-content;
     }
 }
 @media (max-width: 680px) {
