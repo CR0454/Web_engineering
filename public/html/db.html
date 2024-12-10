@@ -19,6 +19,12 @@
         }
     </script>
 
+    <style>
+        .hidden {
+            display:none;
+        }
+    </style>
+
     <main id="mainid">
         <div id="stationSearch">
             <input id="stationInput">
@@ -35,6 +41,12 @@
         var headerheight = document.getElementById("headerid").offsetHeight
         console.log(headerheight)
         document.getElementById("mainid").style.paddingTop = headerheight + "px"
+    </script>
+    <script>
+        function hideInfo(button) {
+            button.nextElementSibling.classList.toggle("hidden")
+            button.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("hidden")
+        }
     </script>
 
     <footer id="footerid">
