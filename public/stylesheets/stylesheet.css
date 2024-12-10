@@ -37,7 +37,10 @@ p, h2, h3 {
     table {
         font-size: 20px;
     }
-    input, select {
+    input, select, button {
+        font-size: 20px;
+    }
+    a {
         font-size: 20px;
     }
 }
@@ -79,7 +82,7 @@ nav {
     background: #333333;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 }
 nav::after{
     clear: both;
@@ -107,7 +110,12 @@ nav li a {
     font-weight: bold;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 740px) {
+    nav {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width: 500px) {
     nav {
         grid-template-columns: 1fr;
     }
@@ -146,6 +154,7 @@ h2 {
 #kursnamen {
     display: grid;
     grid-auto-flow: column;
+    grid-template-columns: 31% 31% 31%;
     gap: 10px;
 }
 
@@ -164,6 +173,11 @@ h2 {
     width: 100%;
     padding-top: 40px;
 }
+
+#wikisearch {
+    width: 75%;
+}
+
 
 @media (max-width: 1000px) {
     #wikiout tr {
@@ -312,4 +326,11 @@ select {
     #stationSearch {
         grid-auto-flow: row;
     }
+}
+
+
+/*signature*/
+#toolbar {
+    display: grid;
+    grid-auto-flow: column;
 }

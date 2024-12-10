@@ -28,41 +28,46 @@ function getAktie(name) {
     var response = JSON.parse(this.responseText)
     console.log(response)
 
-    var stockName = response["Meta Data"]["2. Symbol"]
+    try {
+      var stockName = response["Meta Data"]["2. Symbol"]
 
-    document.getElementById("aktieName").innerHTML = stockName
-    document.getElementById("aktieDatum").innerHTML = response["Meta Data"]["3. Last Refreshed"]
-    document.getElementById("aktieMax").innerHTML = getMax(response["Time Series (Daily)"])
-    document.getElementById("aktieMin").innerHTML = getMin(response["Time Series (Daily)"])
+      document.getElementById("aktieName").innerHTML = stockName
+      document.getElementById("aktieDatum").innerHTML = response["Meta Data"]["3. Last Refreshed"]
+      document.getElementById("aktieMax").innerHTML = getMax(response["Time Series (Daily)"])
+      document.getElementById("aktieMin").innerHTML = getMin(response["Time Series (Daily)"])
 
-    var dates = []
-    var close = []
-    for(var date in response["Time Series (Daily)"]) {
-      dates.unshift(date)
-      close.unshift(response["Time Series (Daily)"][date]["4. close"])
-    }
-    
+      var dates = []
+      var close = []
+      for(var date in response["Time Series (Daily)"]) {
+        dates.unshift(date)
+        close.unshift(response["Time Series (Daily)"][date]["4. close"])
+      }
+      
 
-    data = {
-    labels: dates,
-    datasets: [{
-      label: stockName,
-      data: close,
-      fill: false,
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1
-    }]
-    }
+      data = {
+      labels: dates,
+      datasets: [{
+        label: stockName,
+        data: close,
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+      }
 
-  document.getElementById("Aktienchart").innerHTML = "<canvas id='Aktienkurs'></canvas>"
-  const ctx = document.getElementById('Aktienkurs')
-  new Chart(ctx, {
-    type: 'line', 
-    data: data,
-    options: {
-      responsive: true
-    }
-  })
+    document.getElementById("Aktienchart").innerHTML = "<canvas id='Aktienkurs'></canvas>"
+    const ctx = document.getElementById('Aktienkurs')
+    new Chart(ctx, {
+      type: 'line', 
+      data: data,
+      options: {
+        responsive: true
+      }
+    })
+  }
+  catch {
+    document.getElementById("Aktienchart").innerHTML = "<p style='padding:20px;text-align:center;font-weight:bold;'>There should be something here. </br>Maybe you have reached the API-Call limit of 25/Day.</p>"
+  }
 
   }
 

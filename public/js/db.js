@@ -57,10 +57,14 @@ function createIsland(object, sName) {
     var prevStops = []
     var follStops = []
     var plattform = "error"
+    var cancelMess = "p"
     try {
         arrival = item.ar[0].$
         prevStops = stoparray(arrival.ppth)
         plattform = arrival.pp
+        try {
+            cancelMess = changes.ar[0].$.cs
+        } catch {}
     }
     catch (e){
         ArDepInd = 2
@@ -69,22 +73,25 @@ function createIsland(object, sName) {
         departure = item.dp[0].$
         follStops = stoparray(departure.ppth)
         plattform = departure.pp
+        try {
+            cancelMess = changes.dp[0].$.cs
+        } catch {}
     }
     catch (e){
-        ArDepInd = 1
+        if(ArDepInd == 0) {
+            ArDepInd = 1
+        }
+        else {
+            ArDepInd = -1
+        }
     }
+
+    console.log(cancelMess)
 
     code += "<div class='trainIsland'>"
     code += "<div class='" + tripLabel.c + "'>"
-    
-    var cancelled = 0
-    try {
-        cancelled = changes.m[0].$.del
-        console.error({"canceled": tripLabel.c + " " + tripLabel.n})
-    }
-    catch {}
 
-    if(cancelled != 1){
+    if(cancelMess != "c"){
         switch(ArDepInd) {
             case 0: {
                 code += "<h4 class='trainName' onClick='hideInfo(this)'>" + tripLabel.c + " " + tripLabel.n + " to " + follStops[follStops.length-1] + "</h4>"
@@ -125,7 +132,13 @@ function createIsland(object, sName) {
         }
     }
     else {
-        code += "<h4 class='trainName' style='text-decoration:line-through;color:red;'>" + tripLabel.c + " " + tripLabel.n + " to " + follStops[follStops.length-1] + "</h4>"
+        console.error(tripLabel.c + " " + tripLabel.n + ": cancelled")
+        if(follStops[0] != undefined) {
+            code += "<h4 class='trainName' style='text-decoration:line-through;color:red;'>" + tripLabel.c + " " + tripLabel.n + " to " + follStops[follStops.length-1] + "</h4>"
+        }
+        else {
+            code += "<h4 class='trainName' style='text-decoration:line-through;color:red;'>" + tripLabel.c + " " + tripLabel.n + " to " + sName + "</h4>"
+        }
         try {
             code += "<div class='singleInfo'><p style='color:grey;'>original arrival: " + dbToDate(arrival.pt) + "</p></div>"
         }
@@ -240,6 +253,7 @@ sButton.onclick = function() {
             objects.push(createObject(items[x], changes))
         }
         for(var i in response[1]) {
+            console.log(objects[response[1][i][1]][0].tl[0].$.n, objects[response[1][i][1]])
             traindiv.innerHTML += createIsland(objects[response[1][i][1]], stationName)
         }
     })()
@@ -326,6 +340,10 @@ function corrDeparture(planned, changed) {
     }
     code += "</div>"
     return code
+}
+
+function dbDateRange(message, trainTime){
+    return message.from < trainTime < message.to
 }
 
 /*Show information*/
