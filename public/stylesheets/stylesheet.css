@@ -131,7 +131,7 @@ h2 {
 }
 
 #Aktienchart {
-    width: 50%;
+    width: 100%;
 }
 
 #wikiouttable td {
@@ -141,6 +141,28 @@ h2 {
 
 .wikiref {
     color: var(--text-color);
+}
+
+#kursnamen {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
+}
+
+#aktienInfo {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 25% 75%;
+}
+
+#aktienwerte {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+#links {
+    width: 100%;
+    padding-top: 40px;
 }
 
 @media (max-width: 1000px) {
@@ -157,9 +179,16 @@ h2 {
         font-weight: bold;
     }
 
-    #Aktienchart {
-        width: 80%;
+    #aktienInfo {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-auto-flow: row;
     }
+
+    #links {
+        padding-top: 10px;
+    }
+
 }
 
 /*Wetter Popup*/

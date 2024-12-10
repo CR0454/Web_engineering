@@ -36,7 +36,6 @@
 
     <script>
       var headerheight = document.getElementById("headerid").offsetHeight
-      console.log(headerheight)
       document.getElementById("navid").style.paddingTop = headerheight + "px"
     </script>
   </nav>
@@ -44,9 +43,32 @@
   <main id="mainid">
     <div id="aktien">
       <h2>Aktienkurs</h2>
-      <div id="Aktienchart">
-        <canvas id="Aktienkurs"></canvas>
-      </div>
+        <div id="aktienInfo">
+          <div id="links">
+            <div id="kursnamen">
+              <button class="kursbutton" id="porscheBut" value="porsche">Porsche</button>
+              <button class="kursbutton" id="mercedesBut">Mercedes</button>
+              <button class="kursbutton" id="ibmBut">IBM</button>
+            </div>
+            <div id="aktienwerte">
+              <div id="aktienwerteLegende">
+                <p>Firma</p>
+                <p>Last date</p>
+                <p>Maximum</p>
+                <p>Minimum</p>
+              </div>
+            <div id="aktienwerteWerte">
+              <p id="aktieName"></p>
+              <p id="aktieDatum"></p>
+              <p id="aktieMax"></p>
+              <p id="aktieMin"></p>
+            </div>
+          </div>
+          </div>
+          <div id="Aktienchart">
+            <canvas id="Aktienkurs"></canvas>
+          </div>
+        </div>
     </div>
     <div id="wiki">
       <h2>Wikipedia</h2>
