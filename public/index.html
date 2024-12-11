@@ -9,6 +9,7 @@
   <script src="js/aktien.js" type="module"></script>
   <script src="js/wiki.js" type="module"></script>
   <script src="js/weatherPopup.js" type="module"></script>
+  <script src="../js/headerfooter_offset.js" defer type="module"></script>
 </head>
 
 <body>
@@ -37,11 +38,6 @@
       <li>
         <a href="#signature">Signatur</a>
       </li>
-
-      <script>
-        var headerheight = document.getElementById("headerid").offsetHeight
-        document.getElementById("navid").style.paddingTop = headerheight + "px"
-      </script>
     </nav>
 
     <main id="mainidReal">
@@ -95,10 +91,6 @@
   </div>
   <footer id="footerid">
     &copy; 1679806
-    <script>
-      var footerHeight = document.getElementById("footerid").offsetHeight
-      document.getElementById("mainid").style.paddingBottom = footerHeight + "px"
-    </script>
   </footer>
 
 </body>

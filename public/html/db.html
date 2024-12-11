@@ -6,6 +6,7 @@
   <title>DB Timetable</title>
   <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css">
   <script src="../js/db.js" type="module"></script>
+  <script src="../js/headerfooter_offset.js" defer type="module"></script>
 </head>
 
 <body>
@@ -38,11 +39,6 @@
     </main>
 
     <script>
-        var headerheight = document.getElementById("headerid").offsetHeight
-        console.log(headerheight)
-        document.getElementById("mainid").style.paddingTop = headerheight + "px"
-    </script>
-    <script>
         function hideInfo(button) {
             button.nextElementSibling.classList.toggle("hidden")
             button.nextElementSibling.nextElementSibling.nextElementSibling.classList.toggle("hidden")
@@ -51,9 +47,5 @@
 
     <footer id="footerid">
         &copy; 1679806
-        <script>
-            var footerHeight = document.getElementById("footerid").offsetHeight
-            document.getElementById("mainid").style.paddingBottom = footerHeight + "px"
-        </script>
     </footer>
 </body>
