@@ -1,6 +1,11 @@
 var searchBut = document.getElementById("locButton")
 const forecastDiv = document.getElementById("forecastDiv")
 const genweatherDiv = document.getElementById("genweatherDiv")
+var count = 0
+var temperatures = []
+var times = []
+var weather = []
+var icons = []
 
 const weekday = ["Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"]
 
@@ -10,7 +15,7 @@ function getTimepoint(time) {
 }
 
 function weatherIsland(weather, temp, time, icon) {
-    var fullDiv = "<div class='weatIslandClass' style='padding:10px;text-align:center;'>"
+    var fullDiv = "<div class='weatIslandClass'>"
     fullDiv += "<h4>" + getTimepoint(time) + "</h4>"
     fullDiv += "<img src='https://openweathermap.org/img/wn/" + icon + "@2x.png'>"
     fullDiv += "<p>" + weather + "</p>"
@@ -49,14 +54,9 @@ searchBut.onclick = function() {
 
         xhttp.onload = function() {
             var weatherResponse = JSON.parse(this.responseText)
-            const count = weatherResponse.cnt
+            count = weatherResponse.cnt
             console.log(count)
 
-
-            var temperatures = []
-            var times = []
-            var weather = []
-            var icons = []
             for(var x = 0; x < count; x++) {
                 temperatures.push(weatherResponse.list[x].main.temp)
                 times.push(weatherResponse.list[x].dt_txt)
@@ -68,14 +68,13 @@ searchBut.onclick = function() {
 
             var fullCode = ""
             var temp24 = []
-            for(var x = 0; x < 8; x++) {
+            for(var x = 0; x < 9; x++) {
                 fullCode += weatherIsland(weather[x], temperatures[x], times[x], icons[x])
                 temp24.push(temperatures[x])
             }
 
-
-
             forecastDiv.innerHTML = fullCode
+            forecastDiv.innerHTML += "<div class='weatIslandClass' id='showMore' onclick='showMoreIsland()'><p style='font-weight:bold;'>Show</p><p style='font-weight:bold;'>more</p></div>"
             genweatherDiv.innerHTML = genWeather(temp24)
 
 
@@ -88,4 +87,12 @@ searchBut.onclick = function() {
 
     xhttpLoc.open("GET", urlLoc, true)
     xhttpLoc.send()
+}
+
+function showMoreIsland() {
+    console.log("click")
+    document.getElementById("showMore").remove()
+    for(var x = 9; x < count; x++) {
+        forecastDiv.innerHTML += weatherIsland(weather[x], temperatures[x], times[x], icons[x])
+    }
 }

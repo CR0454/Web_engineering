@@ -17,81 +17,82 @@
     <h1>Web Engineering</h1> <h1>Prüfungsprojekt</h1>
   </header>
 
-  <nav id="navid">
-    <li>
-      <a href="#aktien">Aktienkurs</a>
-    </li>
-    <li>
-      <a href="#wiki">Wikipedia</a>
-    </li>
-    <li>
-      <a href="" id="wetterbutton">Wetter</a>
-    </li>
-    <li>
-      <a href="/html/rss_feed.html">Newsfeed</a>
-    </li>
-    <li>
-      <a href="/html/db.html">DB</a>
-    </li>
-    <li>
-      <a href="#signature">Signatur</a>
-    </li>
+  <div id="mainid">
+    <nav id="navid">
+      <li>
+        <a href="#aktien">Aktienkurs</a>
+      </li>
+      <li>
+        <a href="#wiki">Wikipedia</a>
+      </li>
+      <li>
+        <a href="" id="wetterbutton">Wetter</a>
+      </li>
+      <li>
+        <a href="/html/rss_feed.html">Newsfeed</a>
+      </li>
+      <li>
+        <a href="/html/db.html">DB</a>
+      </li>
+      <li>
+        <a href="#signature">Signatur</a>
+      </li>
 
-    <script>
-      var headerheight = document.getElementById("headerid").offsetHeight
-      document.getElementById("navid").style.paddingTop = headerheight + "px"
-    </script>
-  </nav>
+      <script>
+        var headerheight = document.getElementById("headerid").offsetHeight
+        document.getElementById("navid").style.paddingTop = headerheight + "px"
+      </script>
+    </nav>
 
-  <main id="mainid">
+    <main id="mainidReal">
 
-    <div id="aktien">
-      <h2>Aktienkurs</h2>
-        <div id="aktienInfo">
-          <div id="links">
-            <div id="kursnamen">
-              <button class="kursbutton" id="porscheBut" value="porsche">Porsche</button>
-              <button class="kursbutton" id="mercedesBut">Mercedes</button>
-              <button class="kursbutton" id="ibmBut">IBM</button>
-            </div>
-            <div id="aktienwerte">
-              <div id="aktienwerteLegende">
-                <p>Company</p>
-                <p>Last date</p>
-                <p>Maximum</p>
-                <p>Minimum</p>
+      <div id="aktien">
+        <h2>Aktienkurs</h2>
+          <div id="aktienInfo">
+            <div id="links">
+              <div id="kursnamen">
+                <button class="kursbutton" id="porscheBut" value="porsche">Porsche</button>
+                <button class="kursbutton" id="mercedesBut">Mercedes</button>
+                <button class="kursbutton" id="ibmBut">IBM</button>
               </div>
-            <div id="aktienwerteWerte">
-              <p id="aktieName"></p>
-              <p id="aktieDatum"></p>
-              <p id="aktieMax"></p>
-              <p id="aktieMin"></p>
+              <div id="aktienwerte">
+                <div id="aktienwerteLegende">
+                  <p>Stock</p>
+                  <p>Last date</p>
+                  <p>Maximum</p>
+                  <p>Minimum</p>
+                </div>
+              <div id="aktienwerteWerte">
+                <p id="aktieName"></p>
+                <p id="aktieDatum"></p>
+                <p id="aktieMax"></p>
+                <p id="aktieMin"></p>
+              </div>
+            </div>
+            </div>
+            <div id="Aktienchart">
+              <canvas id="Aktienkurs"></canvas>
             </div>
           </div>
-          </div>
-          <div id="Aktienchart">
-            <canvas id="Aktienkurs"></canvas>
-          </div>
-        </div>
-    </div>
-
-    <div id="wiki">
-      <h2>Wikipedia</h2>
-      <div>
-        <input type="text" id="wikisearch">
-        <button id="searchbutton">Search</button>
       </div>
-      <div id="wikiout"></div>
-    </div>
 
-    <div id="signature">
-      <h2>Signatur</h2>
-      <button id="createSig">Create signature</button>
-      <img id="sigImg">
-    </div>
+      <div id="wiki">
+        <h2>Wikipedia</h2>
+        <div id="searchbarWiki">
+          <input type="text" id="wikisearch">
+          <button id="searchbutton">Search</button>
+        </div>
+        <div id="wikiout"></div>
+      </div>
 
-  </main>
+      <div id="signature">
+        <h2>Signatur</h2>
+        <button id="createSig">Create signature</button>
+        <img id="sigImg">
+      </div>
 
+    </main>
+  </div>
   <footer id="footerid">
     &copy; 1679806
     <script>

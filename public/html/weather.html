@@ -6,7 +6,7 @@
   <title>Wettervorhersage</title>
   <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="../js/weather.js" type="module"></script>
+  <script src="../js/weather.js" defer></script>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
         <h1>Web Engineering</h1> <h1>Prüfungsprojekt</h1>
     </header>
 
-    <main id="weathermain">
+    <main id="mainid">
         <div id="searchbar">
             <input id="locSearch">
             <button id="locButton">Search</button>
@@ -27,7 +27,7 @@
         <script>
             var headerheight = document.getElementById("headerid").offsetHeight
             console.log(headerheight)
-            document.getElementById("weathermain").style.paddingTop = headerheight + "px"
+            document.getElementById("mainid").style.paddingTop = headerheight + "px"
           </script>
     </main>
 
@@ -35,7 +35,7 @@
         &copy; 1679806
         <script>
           var footerHeight = document.getElementById("footerid").offsetHeight
-          document.getElementById("weathermain").style.paddingBottom = footerHeight + "px"
+          document.getElementById("mainid").style.paddingBottom = footerHeight + "px"
         </script>
       </footer>
 

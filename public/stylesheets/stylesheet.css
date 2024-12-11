@@ -18,6 +18,27 @@ p, h2, h3 {
     color: var(--text-color);
 }
 
+button, input, select {
+    border-radius: 1em;
+    padding: 0.3em;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button, select {
+    cursor: pointer;
+}
+
+button {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
 @media (max-width: 560px) {
     h1 {
         font-size: 30px;
@@ -83,6 +104,7 @@ nav {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 nav::after{
     clear: both;
@@ -92,6 +114,7 @@ nav::after{
 nav li {
     list-style-type: none;
     text-align: center;
+    transition: background-color 0.2s;
 }
 nav li:nth-child(2n) {
     background: #f0f0f0;
@@ -131,6 +154,7 @@ main {
 #wiki {
     display: grid;
     place-items: center;
+    align-items: center;
 }
 
 h2 {
@@ -151,6 +175,22 @@ h2 {
     color: var(--text-color);
 }
 
+#searchbarWiki {
+    width: 60%;
+    display: grid;
+    align-items: center;
+    grid-auto-flow: column;
+    grid-template-columns: 75% 25%;
+    gap: 0.5em;
+}
+@media (max-width: 560px) {
+    #searchbarWiki {
+        width: 100%;
+        grid-auto-flow: row;
+        grid-template-columns: 100%;
+    }
+}
+
 #kursnamen {
     display: grid;
     grid-auto-flow: column;
@@ -167,15 +207,12 @@ h2 {
 #aktienwerte {
     display: grid;
     grid-auto-flow: column;
+    padding: 10px;
 }
 
 #links {
     width: 100%;
     padding-top: 40px;
-}
-
-#wikisearch {
-    width: 75%;
 }
 
 
@@ -202,7 +239,13 @@ h2 {
     #links {
         padding-top: 10px;
     }
+}
 
+@media (max-width: 1250px) {
+    #kursnamen {
+        grid-auto-flow: row;
+        grid-template-columns: 100%;;
+    }
 }
 
 /*Wetter Popup*/
@@ -221,16 +264,29 @@ h2 {
     display: grid;
     grid-auto-flow: column;
     overflow-x: auto;
-    grid-auto-columns: min-content;
+    grid-auto-columns: 120px;
     scrollbar-width: thin;
 }
 
 #genweatherDiv {
     padding: 30px;
 }
+
+#showMore {
+    cursor: pointer;
+}
+
+.weatIslandClass {
+    padding:10px;
+    text-align:center;
+}
+
 @media (max-width: 560px) {
     #genweatherDiv {
         padding: 0px;
+    }
+    #forecastDiv {
+        grid-auto-columns: 140px;
     }
 }
 
@@ -274,6 +330,20 @@ h2 {
 
 .trainIsland {
     padding: 10px;
+    border: 1px black solid;
+    border-radius: 1em;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.trainIsland:hover {
+    transform: scale(1.05)
+}
+
+#trainsid {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 100%;
 }
 
 .followStopsClass {
@@ -283,6 +353,7 @@ h2 {
     grid-auto-columns: max-content;
     gap: 20px;
     scrollbar-width: thin;
+    height: 2em;
 }
 
 .FollowStopsButton {
@@ -321,6 +392,7 @@ select {
     .followStopsClass {
         grid-auto-flow: row;
         gap: 0px;
+        height: auto;
     }
     .correctionOut {
         grid-auto-flow: row;
@@ -338,4 +410,14 @@ select {
 #toolbar {
     display: grid;
     grid-auto-flow: column;
+}
+#signature {
+    display: grid;
+    gap: 5px;
+    grid-auto-flow: row;
+    align-items: center;
+    place-items: center;
+}
+#createSig {
+    width: 200px;
 }
