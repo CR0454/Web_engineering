@@ -194,8 +194,8 @@ h2 {
     }
 
     #aktienInfo {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: auto;
+        grid-template-rows: repeat(2, auto);
         grid-auto-flow: row;
     }
 
@@ -227,6 +227,11 @@ h2 {
 
 #genweatherDiv {
     padding: 30px;
+}
+@media (max-width: 560px) {
+    #genweatherDiv {
+        padding: 0px;
+    }
 }
 
 

@@ -40,3 +40,10 @@ closeBut.onclick = function() {
 clearBut.onclick = function() {
     context.clearRect(0, 0, canvas.width, canvas.height)
 }
+
+saveBut.onclick = function() {
+    var image = canvas.toDataURL("image/png")
+    localStorage.setItem("signatureURL", image)
+    console.log(image)
+    close()
+}

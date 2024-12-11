@@ -1,5 +1,6 @@
 var button = document.getElementById("wetterbutton")
 var openSig = document.getElementById("createSig")
+var image = document.getElementById("sigImg")
 
 
 
@@ -10,5 +11,11 @@ button.onclick = function() {
 
 openSig.onclick = function() {
     console.log("open signature")
-    window.open("/html/signature.html", "PopupWindow", "width=400,height=250")
+    var win = window.open("/html/signature.html", "PopupWindow", "width=400,height=250")
+    win.addEventListener("beforeunload", loadSig)
+}
+
+function loadSig() {
+    const sigUrl = localStorage.getItem("signatureURL")
+    image.src = sigUrl
 }

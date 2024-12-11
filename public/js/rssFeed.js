@@ -35,12 +35,8 @@ function nytcomposeArticle(item, itemNr) {
     var code = "<div class='feedElement' id='element" + itemNr + "'>"
     code += "<p class='publishDate'>" + item.getElementsByTagName("pubDate")[0].textContent + "</p>"
     code += "<h3>" + item.getElementsByTagName("title")[0].textContent + "</h3>"
-    /*
-    var parser = new DOMParser()
-    var img = parser.parseFromString(item.getElementsByTagName("media:content"), "application/xml").querySelector("media\\:content")?.getAttribute("url")
-    console.log(img)
+    var img = item.getElementsByTagName("media:content")[0].getAttribute("url")
     code += "<img src='" + img + "' class='feedImage'>"
-    */
     code += "<p class='paragraph'>" + item.getElementsByTagName("description")[0].textContent + "</p>"
     code += "<a class='readmore' href='" + item.getElementsByTagName("link")[0].textContent + "'>Read more</a>"
     code += "</div>"
